@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default function Cart() {
-  
+export default function ProductAdd() {
+
   return (
     <div>
-      cart
+      Add
     </div>
   );
 }

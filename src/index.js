@@ -8,6 +8,8 @@ import NotFound from './pages/NotFound';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import ProductAdd from './pages/ProductAdd';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,17 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        path: '/',
+        element: <Home />
+      },
+      {
+        index: true,
         path: '/products',
         element: <Products />
+      },
+      {
+        path: '/products/add',
+        element: <ProductAdd />
       },
       {
         path: '/products/:productId',
