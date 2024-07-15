@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import { login, logout, onUserStateChange } from '../api/login';
 import User from './User';
+import Button from './ui/Button';
+import { useAuthContext } from './context/AuthContext';
 
 export default function Header() {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    onUserStateChange(setUser);
-  }, []);
+  const {user, login, logout} = useAuthContext();
 
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>
@@ -20,11 +17,11 @@ export default function Header() {
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
         <Link to='/products'>Products</Link>
-        <Link to='/cart'>Cart</Link>
-        <Link to='/' className='text-2xl'><BsPencil /></Link>
+        {user && <Link to='/cart'>Cart</Link>}
+        {user && user.isAdmin &&  <Link to='/add' className='text-2xl'><BsPencil /></Link>}
         {user && <User user={user} />}
-        {!user && <button onClick={login}>Login</button>}
-        {user && <button onClick={logout}>Logout</button>}
+        {!user && <Button text='Login' onClick={login} />}
+        {user && <Button text='Logout' onClick={logout} />}
       </nav>
     </header>
   );

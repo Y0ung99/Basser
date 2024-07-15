@@ -10,6 +10,7 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import ProductAdd from './pages/ProductAdd';
 import Home from './pages/Home';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/products/add',
-        element: <ProductAdd />
+        element: (
+          <ProtectedRoute requireAdmin>
+            <ProductAdd />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/products/:productId',
@@ -37,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        )
       },
     ]
   },
