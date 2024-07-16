@@ -4,7 +4,7 @@ import { getAuth,
          GoogleAuthProvider, 
          signOut,
          onAuthStateChanged  } from "firebase/auth";
-         import { getDatabase, ref, child, get } from "firebase/database";
+         import { getDatabase, ref, get, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,24 +13,38 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 const db = getDatabase();
 
-export const login = () => {
+export function login() {
   signInWithPopup(auth, provider).catch(console.log);
 }
 
-export const logout = () => {
+export function logout() {
   signOut(auth);
 }
 
-export const onUserStateChange = (callback) => {
+export function onUserStateChange(callback) {
   onAuthStateChanged(auth, async (user) => {
     const updatedUser = user ? await adminUser(user) : null;
     callback(updatedUser);
   })
+}
+
+export function writeProductData(product, cld) {
+  const {name, price, category, desc, options} = product;
+  const {public_id, secure_url} = cld;
+  return set(ref(db, 'products/' + public_id), {
+    id: public_id,
+    name,
+    price: parseInt(price),
+    image: secure_url,
+    category,
+    discription: desc,
+    options: options.split(','),
+  });
 }
 
 async function adminUser(user) {

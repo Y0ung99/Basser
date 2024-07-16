@@ -18,7 +18,7 @@ export default function Header() {
       <nav className='flex items-center gap-4 font-semibold'>
         <Link to='/products'>Products</Link>
         {user && <Link to='/cart'>Cart</Link>}
-        {user && user.isAdmin &&  <Link to='/add' className='text-2xl'><BsPencil /></Link>}
+        {user && user.isAdmin &&  <Link to='/products/add' className='text-2xl'><BsPencil /></Link>}
         {user && <User user={user} />}
         {!user && <Button text='Login' onClick={login} />}
         {user && <Button text='Logout' onClick={logout} />}
