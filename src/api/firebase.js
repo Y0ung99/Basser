@@ -47,6 +47,16 @@ export function writeProductData(product, cld) {
   });
 }
 
+export async function readProductData() {
+  return get(ref(db, 'products'))
+  .then(snapshot => {
+    if(snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return []
+  });
+}
+
 async function adminUser(user) {
   return get(ref(db, 'admins'))
   .then((snapshot) => {

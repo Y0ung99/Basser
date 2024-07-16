@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFound from './pages/NotFound';
-import Products from './pages/Products';
+import Products from './components/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import ProductAdd from './pages/ProductAdd';
@@ -24,7 +24,6 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        index: true,
         path: '/products',
         element: <Products />
       },
