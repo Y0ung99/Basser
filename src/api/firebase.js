@@ -4,7 +4,7 @@ import { getAuth,
          GoogleAuthProvider, 
          signOut,
          onAuthStateChanged  } from "firebase/auth";
-         import { getDatabase, ref, get, set } from "firebase/database";
+import { getDatabase, ref, get, set, remove } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -67,4 +67,20 @@ async function adminUser(user) {
     }
     return user;
   });
+}
+
+export async function getCart(userId) {
+  return get(ref(db, `carts/${userId}`))
+  .then(snapshot => {
+    const items = snapshot.val() || {};
+    return Object.values(items);
+  });
+}
+
+export async function addOrUpdateToCart(product, userId) {
+  return set(ref(db, `carts/${userId}/${product.id}`), product)
+}
+
+export async function removeFromCart(productId, userId) {
+  return remove(ref(db, `carts/${userId}/${productId}`))
 }

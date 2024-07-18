@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../components/ui/Button';
 import Input from '../components/ui/Input';
 import { uploadImage } from '../api/cloudinary';
-import { writeProductData } from '../api/firebase';
+import useProducts from '../hooks/useProducts';
 
 export default function ProductAdd() {
   const [product, setProducts] = useState({
@@ -11,6 +11,7 @@ export default function ProductAdd() {
   const [img, setImg] = useState();
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState();
+  const {addProduct} = useProducts();
 
   const handleChange = (e) => {
     const {name, value, files} = e.target;
@@ -24,18 +25,19 @@ export default function ProductAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsUploading(true);
-    // 클라우드너리에 이미지 업로드
     uploadImage(img)
     .then(cld => {
-    // firebase db에 업로드
-      writeProductData(product, cld)
-      .then(() => {
-        // 3초동안 업로드 되었습니다 보여주기
-        setSuccess('성공적으로 제품이 추가되었습니다.');
-        setTimeout(() => {
-          setSuccess(null);
-        }, 4000)
-      })
+      addProduct.mutate(
+        {product, cld},
+        {
+          onSuccess: () => {
+            setSuccess('성공적으로 제품이 추가되었습니다.');
+            setTimeout(() => {
+            setSuccess(null);
+            }, 4000)
+          }
+        }
+      )
     })
     .finally(() => setIsUploading(false));
   }
