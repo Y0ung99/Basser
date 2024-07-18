@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoBagHandleSharp } from "react-icons/io5";
+import { GiGuitarBassHead } from "react-icons/gi";
 import { BsPencil } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import User from './User';
@@ -12,9 +12,9 @@ export default function Header() {
 
   return (
     <header className='flex justify-between border-b border-gray-300 p-2'>
-      <Link to='/' className='flex items-center text-4xl text-brand'>
-        <IoBagHandleSharp />
-        <h1>Shoppy</h1>
+      <Link to='/' className='flex items-center text-5xl text-brand'>
+        <GiGuitarBassHead />
+        <h1>Basser</h1>
       </Link>
       <nav className='flex items-center gap-4 font-semibold'>
         <Link to='/products'>Products</Link>

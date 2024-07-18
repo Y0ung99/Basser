@@ -27,7 +27,9 @@ export default function ProductDetail() {
         <div className='w-full basis-5/12 flex flex-col p-4'>
           <h2 className='text-3xl font-bold py-2 '>{name}</h2>
           <p className='text-2xl font-bold py-2 border-b border-gray-400'>{`₩${price}`}</p>
-          <p className='py-4 text-lg'>{discription}</p>
+          <div className='my-2'>
+            {discription.split('|').map(disc => <p className='text-lg mb-1'>{disc}</p>)}
+          </div>
           <div className='flex items-center'>
             <label className='text-brand font-bold' htmlFor='select'>옵션: </label>
             <select className='p-2 m-4 flex-1 border-2 border-dashed border-brand outline-none'
