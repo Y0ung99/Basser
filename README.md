@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# BASSER 악기 쇼핑몰
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech Stack
 
-## Available Scripts
+<div style='flex'>
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Firebase-DD2C00?style=flat&logo=Firebase&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ReactRouter-CA4245?style=flat&logo=ReactRouter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ReactQuery-FF4154?style=flat&logo=ReactQuery&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TailwindCss-56347Cstyle=flat&logo=TailwindCss&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=Netlify&logoColor=white"/>
+</div>
 
-In the project directory, you can run:
+## 기능 설명
 
-### `yarn start`
+#### 라우팅
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+아래의 페이지는 React Router Outlet를 이용해서 헤더 밑에 나오게 만듬<br/>
+/ : 홈 메인 배너와 제품들을 보여주는 페이지<br/>
+/products : 모든 제품들을 보여주는 페이지<br/>
+/products/:id : 제품 상세 페이지<br/>
+/products/add : 어드민만 접근가능한 제품 등록 페이지<br/>
+/cart: 로그인한 사용자만 접근 가능한 장바구니 페이지<br/><br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 로그인
 
-### `yarn test`
+파이어베이스 로그인 API를 사용한 구글 로그인 기능.<br/>
+어드민이면 헤더에 제품등록 으로 접근 할 수 있는 연필버튼이 나옴.<br/>
+로그인 했다면 헤더에 장바구니로 접근 할 수 있는 장바구니버튼이 나옴.
+Context를 사용하여 프로젝트 전범위에서 활용 가능<br/><br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 제품 등록
 
-### `yarn build`
+어드민 사용자는 [이미지, 제품명, 카테고리, 가격, 설명, 옵션]란을 채우면 제품 등록 가능.<br/>
+이미지는 Cloudinary에 저장되고, 나머지와 어드민 정보는 Firebase Realtime Database에 저장됨.<br/><br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 장바구니
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+로그인한 사용자는 제품을 장바구니에 담을 수 있음.<br/>
+장바구니에 제품을 담으면 헤더의 장바구니에 제품의 개수가 업데이트 됨.<br/>
+장바구니 페이지에서 수량을 더하거나 뺄 수 있음.<br/>
+위 기능을 사용할 때 React Query Mutation을 통해 페이지와 DB가 실시간으로 업데이트 됨.<br/><br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 기능
 
-### `yarn eject`
+### 로그인
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![로그인](https://github.com/user-attachments/assets/854ee259-5023-424b-8ce0-3a96e5c75594)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 모든제품 '/products'
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![모든제품](https://github.com/user-attachments/assets/bce8e14e-432b-4ace-aba9-38dd2e4e01cf)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 어드민 제품등록 '/products/add'
 
-## Learn More
+![어드민제품등록](https://github.com/user-attachments/assets/d178cd23-0251-445b-b156-3c43d54d990c)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 일반사용자 제품등록 제한
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![일반사용자 제품등록](https://github.com/user-attachments/assets/a9859cd8-f9d6-4ca4-856a-6f96076ecbb6)
 
-### Code Splitting
+### 장바구니 추가
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![장바구니추가](https://github.com/user-attachments/assets/62e451fe-8f30-4dd4-8bd7-59d43fc7ced2)
