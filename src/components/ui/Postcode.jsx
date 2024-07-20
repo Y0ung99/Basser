@@ -2,7 +2,7 @@ import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
 
 //'bg-brand text-white py-2 px-4 rounded-sm hover:brightness-110 my-2 absolute right-2 top-32'
-export default function Postcode({handlePostInput, handlePostIsOpen, receiver, sender}) {
+export default function Postcode({handlePostInput, handlePostIsOpen}) {
   const completeHandler = (data) => {
     const {address, zonecode} = data;
     handlePostInput(address, zonecode)

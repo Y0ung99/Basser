@@ -86,6 +86,6 @@ export async function removeFromCart(productId, userId) {
   return remove(ref(db, `carts/${userId}/${productId}`))
 }
 
-export function writePaymentResult(recipt) {
-  return set(ref(db, 'payment/complete'), recipt);
+export function writePaymentResult(order) {
+  return set(ref(db, `payment/complete/${order.paymentId}`), order);
 }
