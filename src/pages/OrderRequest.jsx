@@ -40,7 +40,7 @@ export default function OrderRequest() {
     products.map(product => 
       removeProductFromCart.mutate(
         product.id, 
-        {onSuccess: () => navigate('/order/result', {state: {products, price:totalPrice + SHIPPING}})},
+        {onSuccess: () => navigate('/order/result', {state: {products, form, totalPrice, SHIPPING}})},
       )
     );
   }
