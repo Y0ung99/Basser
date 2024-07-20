@@ -10,7 +10,7 @@ import { productsPayment } from '../api/portone';
 import useCart from '../hooks/useCart';
 
 const STYLE_INPUT = 'outline-none border border-gray-300 p-4 my-1 w-full'
-export default function RequestOrder() {
+export default function OrderRequest() {
   const navigate = useNavigate();
   const { state: {products, totalPrice, SHIPPING} } = useLocation();
   const { removeProductFromCart } = useCart();
@@ -40,7 +40,7 @@ export default function RequestOrder() {
     products.map(product => 
       removeProductFromCart.mutate(
         product.id, 
-        {onSuccess: () => navigate('/')},
+        {onSuccess: () => navigate('/order/result', {state: {products, price:totalPrice + SHIPPING}})},
       )
     );
   }

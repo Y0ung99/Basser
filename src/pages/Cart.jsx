@@ -27,7 +27,7 @@ export default function Cart() {
             <CartItem type='cart' key={product.id} product={product}/>)}
         </ul>
       </>}
-      <div className='flex justify-between items-center mb-6 px-2 md:px-8 lg:px-16'>
+      <div className='flex flex-col sm:flex-row justify-between items-center mb-6 px-2 md:px-8 lg:px-16'>
         <PriceCard text='상품 총액' price={totalPrice}/>
         <BsFillPlusCircleFill className='shrink-0'/>
         <PriceCard text='배송액' price={SHIPPING}/>

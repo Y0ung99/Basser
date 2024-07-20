@@ -11,7 +11,8 @@ import ProductAdd from './pages/ProductAdd';
 import Home from './pages/Home';
 import ProtectedRoute from './pages/ProtectedRoute';
 import ProductAll from './pages/ProductAll';
-import RequestOrder from './pages/RequestOrder';
+import OrderRequest from './pages/OrderRequest';
+import OrderResult from './pages/OrderResult';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,15 @@ const router = createBrowserRouter([
         path: '/order',
         element: (
           <ProtectedRoute>
-            <RequestOrder />
+            <OrderRequest />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/order/result',
+        element: (
+          <ProtectedRoute>
+            <OrderResult />
           </ProtectedRoute>
         )
       },
