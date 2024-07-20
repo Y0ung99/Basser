@@ -78,9 +78,14 @@ export async function getCart(userId) {
 }
 
 export async function addOrUpdateToCart(product, userId) {
+  if (!userId) throw Error('로그인을 하면 장바구니를 이용할 수 있습니다.');
   return set(ref(db, `carts/${userId}/${product.id}`), product)
 }
 
 export async function removeFromCart(productId, userId) {
   return remove(ref(db, `carts/${userId}/${productId}`))
+}
+
+export function writePaymentResult(recipt) {
+  return set(ref(db, 'payment/complete'), recipt);
 }

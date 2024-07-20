@@ -11,7 +11,8 @@ export default function useCart() {
   });
   const addProductToCart = useMutation({
     mutationFn: (product) => addOrUpdateToCart(product, uid),
-    onSuccess: () => queryClient.invalidateQueries(['carts', uid])
+    onSuccess: () => queryClient.invalidateQueries(['carts', uid]),
+    onError: (e) => alert(e), 
   });
   const removeProductFromCart = useMutation({
     mutationFn: (productId) => removeFromCart(productId, uid),

@@ -11,12 +11,12 @@ export default function ProductDetail() {
   const [selected, setSelected] = useState(options && options[0]);
   const handleSelect = (e) => setSelected(e.target.value);
   const handleClick = () => {
-    const product = {id, image, name, price, option: selected, quantity: 1};
+    const product = {id, image, name, price, option: selected, quantity: 1, checked: true};
     addProductToCart.mutate(product, {
       onSuccess: () => {
         setSuccess('장바구니에 추가되었습니다.');
         setTimeout(() => setSuccess(null), 3000);
-      }
+      },
     })
   }
   return (

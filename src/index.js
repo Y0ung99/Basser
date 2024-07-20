@@ -11,6 +11,7 @@ import ProductAdd from './pages/ProductAdd';
 import Home from './pages/Home';
 import ProtectedRoute from './pages/ProtectedRoute';
 import ProductAll from './pages/ProductAll';
+import RequestOrder from './pages/RequestOrder';
 
 const router = createBrowserRouter([
   {
@@ -47,15 +48,23 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         )
       },
+      {
+        path: '/order',
+        element: (
+          <ProtectedRoute>
+            <RequestOrder />
+          </ProtectedRoute>
+        )
+      },
     ]
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
