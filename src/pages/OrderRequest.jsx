@@ -6,14 +6,15 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { FaEquals } from 'react-icons/fa';
 import Button from '../components/ui/Button';
 import Postcode from '../components/ui/Postcode';
-import { productsPayment } from '../api/portone';
 import useCart from '../hooks/useCart';
+import usePayment from '../hooks/usePayment';
 
 const STYLE_INPUT = 'outline-none border border-gray-300 p-4 my-1 w-full'
 export default function OrderRequest() {
   const navigate = useNavigate();
   const { state: {products, totalPrice, SHIPPING} } = useLocation();
   const { removeProductFromCart } = useCart();
+  const { payment } = usePayment();
   const [form, setForm] = useState({
     senderName: '', senderAddress: '', senderAddressDetail: '', senderTel: '', senderRequest: '',
     receiverName: '', receiverAddress: '', receiverAddressDetail: '', receiverTel: '', receiverRequest: '',
@@ -35,14 +36,17 @@ export default function OrderRequest() {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await productsPayment(products, form, totalPrice + SHIPPING);
-    if (!response) return alert('주문을 실패했습니다.');
-    products.map(product => 
-      removeProductFromCart.mutate(
-        product.id, 
-        {onSuccess: () => navigate('/order/result', {state: {products, form, totalPrice, SHIPPING}})},
-      )
-    );
+    payment.mutate(
+      {products, form, price:totalPrice + SHIPPING},
+      {onSuccess: () => {
+        products.map(product => 
+          removeProductFromCart.mutate(
+            product.id, 
+            {onSuccess: () => navigate('/order/result', {state: {products, form, totalPrice, SHIPPING}})},
+          )
+        );
+      }}
+    )
   }
 
   const handleSenderPostIsOpen = () => setIsOpen(prev => ({...prev, sender: false}));

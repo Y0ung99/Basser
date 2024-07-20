@@ -13,6 +13,7 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import ProductAll from './pages/ProductAll';
 import OrderRequest from './pages/OrderRequest';
 import OrderResult from './pages/OrderResult';
+import OrderRecipt from './pages/OrderRecipt';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <OrderResult />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/order/recipt',
+        element: (
+          <ProtectedRoute>
+            <OrderRecipt />
           </ProtectedRoute>
         )
       },
