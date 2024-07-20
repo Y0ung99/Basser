@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import PriceCard from '../components/PriceCard';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
@@ -60,7 +60,7 @@ export default function RequestOrder() {
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.senderName} type="text" name='senderName' placeholder='이름'/>
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.senderAddress} type="text" name='senderAddress' placeholder='주소' readOnly/>
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.senderAddressDetail} type="text" name='senderAddressDetail' placeholder='주소상세'/>
-            <Button style='absolute right-2 top-32' text='주소찾기' onClick={handleVisibleSenderPost}/>
+            <Button styles='absolute right-2 top-32' text='주소찾기' onClick={handleVisibleSenderPost}/>
             {isOpen.sender && <Postcode 
             handlePostIsOpen={handleSenderPostIsOpen}
             handlePostInput={handleSenderPostInput} 
@@ -76,7 +76,7 @@ export default function RequestOrder() {
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.receiverName} type="text" name='receiverName' placeholder='이름'/>
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.receiverAddress} type="text" name='receiverAddress' placeholder='주소' readOnly/>
             <input className={STYLE_INPUT} required onChange={handleChange} value={form.receiverAddressDetail} type="text" name='receiverAddressDetail' placeholder='상세주소'/>
-            <Button style='absolute right-2 top-32' text='주소찾기' onClick={handleVisibleReceiverPost}/>
+            <Button styles='absolute right-2 top-32' text='주소찾기' onClick={handleVisibleReceiverPost}/>
             {isOpen.receiver && <Postcode 
             handlePostIsOpen={handleReceiverPostIsOpen}
             handlePostInput={handleReceiverPostInput} 
@@ -101,7 +101,7 @@ export default function RequestOrder() {
             <PriceCard text='총가격' price={totalPrice + SHIPPING}/>
           </div>
         </div>
-        <Button style='w-full' type='submit' text='결제하기' />
+        <Button styles='w-full' type='submit' text='결제하기' />
       </form>
     </section>
   );

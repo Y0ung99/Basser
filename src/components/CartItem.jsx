@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {AiOutlineMinusSquare, AiOutlinePlusSquare} from 'react-icons/ai';
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import useCart from '../hooks/useCart';
