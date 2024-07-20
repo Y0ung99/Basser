@@ -26,5 +26,6 @@ export async function productsPayment(products, form, price) {
   );
 
   if (!paymentResponse.ok) throw new Error(`paymentResponse: ${await paymentResponse.json()}`);
-  return writePaymentResult({paymentId, userInfo: form, products });
+  await writePaymentResult({paymentId, userInfo: form, products });
+  return true;
 }
