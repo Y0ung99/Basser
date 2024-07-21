@@ -37,8 +37,8 @@ export default function Cart() {
       <Button onClick={() => navigator('/order',{
         state: {
           products: products.filter(product => product.checked),
-          SHIPPING,
-          totalPrice,
+          shipPrice: SHIPPING,
+          productsPrice: totalPrice,
         }
     })} 
       text='주문하기' />

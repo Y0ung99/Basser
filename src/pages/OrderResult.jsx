@@ -7,7 +7,8 @@ import { FaEquals } from 'react-icons/fa';
 import Button from '../components/ui/Button';
 
 export default function OrderResult() {
-  const {state: {products, form, totalPrice, SHIPPING}} = useLocation();
+  const {state: {products, form, price}} = useLocation();
+  const {productsPrice, shipPrice, totalPrice} = price;
   const navigate = useNavigate();
 
   return (
@@ -25,11 +26,11 @@ export default function OrderResult() {
           </ul>
         </>}
       <div className='flex justify-between items-center mb-6 px-2 md:px-8 lg:px-16'>
-        <PriceCard text='상품 총액' price={totalPrice}/>
+        <PriceCard text='상품 총액' price={productsPrice}/>
         <BsFillPlusCircleFill className='shrink-0'/>
-        <PriceCard text='배송액' price={SHIPPING}/>
+        <PriceCard text='배송액' price={shipPrice}/>
         <FaEquals className='shrink-0'/>
-        <PriceCard text='총가격' price={totalPrice + SHIPPING}/>
+        <PriceCard text='총가격' price={totalPrice}/>
       </div>
     </section>
   );

@@ -14,10 +14,10 @@ export default function OrderItem({order}) {
         <div className='flex-1 flex justify-between ml-4'>
           <div className='basis-3/5'>
             <p className='line-clamp-1'>{orderName}</p>
-            <p>₩{price}</p>
+            <p>₩{price.totalPrice}</p>
             <p className='font-bold text-brand'>{status}</p>
           </div>
-          <Button text='주문자세히보기' onClick={() => navigate(`/`, {state: {userInfo}})}></Button>
+          <Button text='주문자세히보기' onClick={() => navigate(`/order/${paymentId}`, {state: {userInfo, order}})}></Button>
         </div>
       </div>
     </li>

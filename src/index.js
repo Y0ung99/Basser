@@ -14,6 +14,7 @@ import ProductAll from './pages/ProductAll';
 import OrderRequest from './pages/OrderRequest';
 import OrderResult from './pages/OrderResult';
 import OrderRecipt from './pages/OrderRecipt';
+import OrderDetail from './pages/OrderDetail';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <OrderRecipt />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/order/:paymentId',
+        element: (
+          <ProtectedRoute>
+            <OrderDetail />
           </ProtectedRoute>
         )
       },

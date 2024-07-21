@@ -6,7 +6,10 @@ export default function usePayment() {
   const { uid } = useAuthContext();
 
   const payment = useMutation({
-    mutationFn: async ({products, form, price}) => await productsPayment(products, form, price, uid),
+    mutationFn: async ({products, form, price}) => {
+      await productsPayment(products, form, price, uid);
+      console.log('hs');
+    }
   });
 
   return { payment }

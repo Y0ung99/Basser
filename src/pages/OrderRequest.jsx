@@ -12,7 +12,7 @@ import usePayment from '../hooks/usePayment';
 const STYLE_INPUT = 'outline-none border border-gray-300 p-4 my-1 w-full'
 export default function OrderRequest() {
   const navigate = useNavigate();
-  const { state: {products, totalPrice, SHIPPING} } = useLocation();
+  const { state: {products, productsPrice, shipPrice} } = useLocation();
   const { removeProductFromCart } = useCart();
   const { payment } = usePayment();
   const [form, setForm] = useState({
@@ -37,12 +37,12 @@ export default function OrderRequest() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     payment.mutate(
-      {products, form, price:totalPrice + SHIPPING},
+      {products, form, price:{totalPrice:productsPrice + shipPrice, productsPrice, shipPrice}},
       {onSuccess: () => {
         products.map(product => 
           removeProductFromCart.mutate(
             product.id, 
-            {onSuccess: () => navigate('/order/result', {state: {products, form, totalPrice, SHIPPING}})},
+            {onSuccess: () => navigate('/order/result', {state: {products, form, price:{totalPrice:productsPrice + shipPrice, productsPrice, shipPrice}}})},
           )
         );
       }}
@@ -101,11 +101,12 @@ export default function OrderRequest() {
             </ul>
           </>}
           <div className='flex justify-between items-center mb-6 px-2 md:px-8 lg:px-16'>
-            <PriceCard text='상품 총액' price={totalPrice}/>
+            <PriceCard text='상품 총액' price={productsPrice}/>
             <BsFillPlusCircleFill className='shrink-0'/>
-            <PriceCard text='배송액' price={SHIPPING}/>
+            <PriceCard text='배송액' price={shipPrice}/>
             <FaEquals className='shrink-0'/>
-            <PriceCard text='총가격' price={totalPrice + SHIPPING}/>
+            <PriceCard text='총가격' price={
+              productsPrice + shipPrice}/>
           </div>
         </div>
         <Button styles='w-full' type='submit' text='결제하기' />

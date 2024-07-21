@@ -23,7 +23,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("resize", resizeListener);
     };
-  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 설정
+  }, []);
 
   return (
     winSize > 640 ? 
@@ -63,6 +63,11 @@ export default function Header() {
         {user && (
           <Link className='bg-brand w-full p-1 rounded-md hover:brightness-110' to='/cart'>
             My Cart
+          </Link>
+        )}
+        {user && (
+          <Link className='bg-brand w-full p-1 rounded-md hover:brightness-110' to='/order/recipt'>
+            My Orders
           </Link>
         )}
         {user && user.isAdmin &&  

@@ -1,17 +1,18 @@
 import { requestPayment } from "@portone/browser-sdk/v2";
 import { v4 } from 'uuid';
 import { writePaymentResult } from './firebase';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 export async function productsPayment(products, form, price, uid) {
   const paymentId = v4();
   const orderName = `${form.senderName}님의 ${products[0].name}${products.length > 1 ? ` 외 ${products.length-1}개` : ''}`
+  console.log(price);
   const response = await requestPayment({
     storeId: process.env.REACT_APP_PORTONE_STORE_ID,
     channelKey: process.env.REACT_APP_PORTONE_CHANNEL_KEY,
     paymentId,
     orderName,
-    totalAmount: price,
+    totalAmount: price.totalPrice,
     currency: 'CURRENCY_KRW',
     payMethod: "CARD",
   })
