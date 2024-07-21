@@ -89,3 +89,13 @@ export async function removeFromCart(productId, userId) {
 export async function writePaymentResult(order, userId) {
   return await set(ref(db, `payment/${userId}/${order.paymentId}`), order);
 }
+
+export async function getUserOrder(uid) {
+  return get(ref(db, `payment/${uid}`))
+  .then(snapshot => {
+    if(snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return []
+  });
+}

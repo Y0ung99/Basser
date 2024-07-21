@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaShoppingCart } from "react-icons/fa";
+import { GiShoppingCart } from "react-icons/gi";
 import useCart from '../hooks/useCart';
 
 export default function CartStatus() {
@@ -7,7 +7,7 @@ export default function CartStatus() {
 
   return (
     <div className='relative'>
-      <FaShoppingCart className='text-4xl'/>
+      <GiShoppingCart className='text-4xl'/>
       {products && <p className='w-6 h-6 text-center bg-brand text-white font-bold rounded-full absolute -top-1 -right-2'>{products.length}</p>}
     </div>
   );

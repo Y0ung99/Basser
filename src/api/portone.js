@@ -1,6 +1,7 @@
 import { requestPayment } from "@portone/browser-sdk/v2";
 import { v4 } from 'uuid';
 import { writePaymentResult } from './firebase';
+import * as dayjs from 'dayjs';
 
 export async function productsPayment(products, form, price, uid) {
   const paymentId = v4();
@@ -26,6 +27,6 @@ export async function productsPayment(products, form, price, uid) {
   );
 
   if (!paymentResponse.ok) throw new Error(`paymentResponse: ${await paymentResponse.json()}`);
-  await writePaymentResult({paymentId, userInfo: form, products }, uid);
+  await writePaymentResult({paymentId, orderName, userInfo: form, products, price, status: '결제완료', date: dayjs().format('YYYY.MM.DD (HH:mm)')}, uid);
   return true;
 }
