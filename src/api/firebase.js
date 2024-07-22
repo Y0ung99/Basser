@@ -99,3 +99,18 @@ export async function getUserOrder(uid) {
     return []
   });
 }
+
+export async function getAllOrder() {
+  return get(ref(db, `payment/`))
+  .then(snapshot => {
+    if(snapshot.exists()) {
+      return Object.values(snapshot.val());
+    }
+    return []
+  });
+}
+
+export async function orderStateChange(order, status) {
+  const {uid, paymentId } = order;
+  return set(ref(db, `payment/${uid}/${paymentId}`), {...order, status})
+}

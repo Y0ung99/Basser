@@ -7,6 +7,7 @@ import Button from './ui/Button';
 import { useAuthContext } from '../context/AuthContext';
 import CartStatus from './CartStatus';
 import OrderStatus from './OrderStatus';
+import DeliveryStatus from './DeliveryStatus';
 
 const STYLE_HEADER_ROW = 'flex justify-between border-b border-gray-300 p-2';
 const STYLE_HEADER_COL = 'flex flex-col items-center border-b border-gray-300 p-2 relative';
@@ -38,6 +39,7 @@ export default function Header() {
         {user && <Link to='/cart'><CartStatus /></Link>}
         {user && <Link to='/order/recipt'><OrderStatus /></Link>}
         {user && user.isAdmin &&  <Link to='/products/add' className='text-2xl'><BsPencil /></Link>}
+        {user && user.isAdmin &&  <Link to='/order/handle' className='text-2xl'><DeliveryStatus /></Link>}
         {user && <User user={user} />}
         {!user && <Button text='Login' onClick={login} />}
         {user && <Button text='Logout' onClick={logout} />}
@@ -73,6 +75,11 @@ export default function Header() {
         {user && user.isAdmin &&  
           <Link to='/products/add' className='bg-brand w-full p-1 rounded-md hover:brightness-110'>
             Edit Products for Admin
+          </Link>
+        }
+        {user && user.isAdmin &&  
+          <Link to='/order/handle' className='bg-brand w-full p-1 rounded-md hover:brightness-110'>
+            Handle Orders for Admin
           </Link>
         }
       </nav>

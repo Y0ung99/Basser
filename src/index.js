@@ -15,6 +15,8 @@ import OrderRequest from './pages/OrderRequest';
 import OrderResult from './pages/OrderResult';
 import OrderRecipt from './pages/OrderRecipt';
 import OrderDetail from './pages/OrderDetail';
+import OrderHandle from './pages/OrderHandle';
+import OrderHandleDetail from './pages/OrderHandleDetail';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <OrderDetail />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/order/handle',
+        element: (
+          <ProtectedRoute requireAdmin>
+            <OrderHandle />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: '/order/handle/:paymentId',
+        element: (
+          <ProtectedRoute requireAdmin>
+            <OrderHandleDetail />
           </ProtectedRoute>
         )
       },

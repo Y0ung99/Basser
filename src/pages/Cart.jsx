@@ -34,13 +34,16 @@ export default function Cart() {
         <FaEquals className='shrink-0'/>
         <PriceCard text='총가격' price={totalPrice + SHIPPING}/>
       </div>
-      <Button onClick={() => navigator('/order',{
+      <Button onClick={hasProducts && products.filter(product => product.checked).length
+      ? () => navigator('/order',{
         state: {
           products: products.filter(product => product.checked),
           shipPrice: SHIPPING,
           productsPrice: totalPrice,
         }
-    })} 
+      }) 
+      : () => alert('주문 할 상품이 존재하지 않습니다.')
+    } 
       text='주문하기' />
     </section>
   );

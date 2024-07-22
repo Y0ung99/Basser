@@ -8,7 +8,9 @@ export default function useProducts() {
   });
   const addProduct = useMutation({
     mutationFn: ({product, cld}) => writeProductData(product, cld),
-    onSuccess: () => queryClient.invalidateQueries(['products']),
+    onSuccess: () => queryClient.invalidateQueries({
+      queryKey: ['products'],
+    }),
   });
 
   return {productsQuery, addProduct};

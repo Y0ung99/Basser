@@ -28,6 +28,6 @@ export async function productsPayment(products, form, price, uid) {
   );
 
   if (!paymentResponse.ok) throw new Error(`paymentResponse: ${await paymentResponse.json()}`);
-  await writePaymentResult({paymentId, orderName, userInfo: form, products, price, status: '결제완료', date: dayjs().format('YYYY.MM.DD (HH:mm)')}, uid);
+  await writePaymentResult({paymentId, orderName, userInfo: {...form, uid}, products, price, status: '결제완료', date: dayjs().format('YYYY.MM.DD (HH:mm)')}, uid);
   return true;
 }
