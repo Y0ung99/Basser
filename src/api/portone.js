@@ -17,7 +17,9 @@ export async function productsPayment(products, form, price, uid) {
     payMethod: "CARD",
   })
 
-  if (response.code != null) return alert(response.message);
+  if (response.code != null) {
+    throw new Error(`결제취소`);
+  }
 
   // 테스트용 검증코드 나중에 백엔드로!!
   const paymentResponse = await fetch(

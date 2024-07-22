@@ -7,8 +7,9 @@ export default function usePayment() {
 
   const payment = useMutation({
     mutationFn: async ({products, form, price}) => {
-      await productsPayment(products, form, price, uid);
-    }
+      return await productsPayment(products, form, price, uid);
+    },
+    onError: (error) => alert(error)
   });
 
   return { payment }
