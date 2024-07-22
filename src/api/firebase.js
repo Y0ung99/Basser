@@ -111,6 +111,5 @@ export async function getAllOrder() {
 }
 
 export async function orderStateChange(order, status) {
-  const {uid, paymentId } = order;
-  return set(ref(db, `payment/${uid}/${paymentId}`), {...order, status})
+  return set(ref(db, `payment/${order.userInfo.uid}/${order.paymentId}`), {...order, status})
 }
